@@ -1,0 +1,24 @@
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+public class InputCode {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		 Scanner scan = new Scanner(System.in);
+		 System.out.println("输入一串加密或加密后的字符串：");
+		 String password = scan.nextLine();		//获取用户输入；
+		 char[] array = password.toCharArray(); 	//获取字符数组；
+		 for(int i = 0;i<array.length;i++)
+		 {
+			 array[i]=(char)(array[i]^20000);
+		 }
+		 
+		/* for(int i=0;i<password.length();i++)
+		 {
+			 password[i]=(char)(password[i]^20000);
+		 }*/   //必须是数组才能逐位比较
+		 System.out.println("加密或解密结果为：");
+		 System.err.println(new String(array));
+}
+}
