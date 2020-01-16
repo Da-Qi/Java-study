@@ -3,19 +3,19 @@ public class CheckLogin {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner scan = new Scanner(System.in);
+		Scanner scan = new Scanner(System.in);	//创建扫描枪
 		System.out.println("请输入登录用户名：");
-		String username = scan.nextLine();
+		String username = scan.nextLine();	//接收用户输入登录名
 		System.out.println("请输入登录密码：");
-		String password = scan.nextLine();
-		if(!username.equals("mr")) {
+		String password = scan.nextLine();	//接收用户输入密码
+		if(!username.equals("mr")) {	//判断用户名的合法性
 			System.out.println("用户名输入非法！");
 		}
-		else if(!password.equals("mrsoft")){
+		else if(!password.equals("mrsoft")){		//判断用户密码的合法性
 			System.out.println("密码输入错误！");
 		}
 		else {
-			System.out.println("成功登录！");
+			System.out.println("成功登录！");		//通过两个验证则表示验证成功
 		}
 	}
 
