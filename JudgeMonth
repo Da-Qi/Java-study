@@ -1,0 +1,35 @@
+import java.util.Scanner;
+public class JudgeMonth {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("请输入一个月份，将告知其所在的季节！");
+		Scanner scan = new Scanner(System.in);
+		int month = scan.nextInt();		//接收用户的输入
+		switch(month) {				//判断季节
+			case 12:
+			case 1:
+			case 2:
+				System.out.println("该月份在冬季");
+				break;
+			case 3:
+			case 4:
+			case 5:
+				System.out.println("该月份在春季");
+				break;
+			case 6:
+			case 7:
+			case 8:
+				System.out.println("该月份在夏季");
+				break;
+			case 9:
+			case 10:
+			case 11:
+				System.out.println("该月份在秋季");
+				break;
+			default:
+				System.out.println("你那里有"+month+"月份吗？");
+		}
+	}
+
+}
