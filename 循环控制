@@ -71,3 +71,45 @@ public class Example {
 	}
 
 }
+**for循环输出空心的菱形**
+
+public class Diamond {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		printHollowRhombus(10);
+	}
+	public static void printHollowRhombus(int size) {
+		if(size %2 ==0) {
+			size++;
+		}					//计算菱形的大小
+		for(int i=0;i<size/2+1;i++) {		//size/2+1表示上部分的行数
+			for(int j=size/2+1;j>i+1;j--) {
+				System.out.print(" "); 		//输出左上角位置的空白
+			}
+			for(int j=0;j<2*i+1;j++) {
+				if(j == 0||j == 2*i) {
+					System.out.print("*");	//输出菱形上部分的边缘
+				}
+				else {
+					System.out.print(" "); 		//输出菱形上部分的中心
+				}
+			}
+			System.out.println();			//不要忘记了换行
+		}
+		for(int i=0;i<size/2;i++) {		//下部分一共有size/2行
+			for(int j=i+1;j>0;j--) {
+				System.out.print(" "); 		//输出左下角位置的空白
+			}
+			for(int j=0;j<2*(size/2-i)-1;j++) {
+				if(j == 0||j == 2*(size/2-i-1)) {
+					System.out.print("*");	//输出菱形下部分的边缘
+				}
+				else {
+					System.out.print(" "); 		//输出菱形下部分的中心
+				}
+			}
+			System.out.println();
+		}
+	}
+}
