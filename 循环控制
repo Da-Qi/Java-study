@@ -113,3 +113,35 @@ public class Diamond {
 		}
 	}
 }
+*foreach循环优于for循环**
+//foreachs for循环的一种简写形式
+//for(Type e : collections){}   其中e表示集合或数组的一个元素，collections表示要遍历的数组或集合。
+import java.util.ArrayList;
+import java.util.List;
+public class UseForeach {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		List<String> list = new ArrayList<String>();	//创建List集合;
+		list.add("abc");
+		list.add("def");
+		list.add("hij");
+		list.add("klm");
+		list.add("nop");
+		list.add("qsr");
+		System.out.print("foreach 遍历集合：\n\t");
+		for(String string : list) {			//遍历list集合
+			System.out.print(string);		//输出集合的元素值
+		}
+		System.out.println();
+		String[] strs = new String[list.size()];
+		list.toArray(strs);				//创建数组
+		System.out.print("foreach 遍历数组：\n\t");
+		for(String string : strs) {			//遍历数组
+			System.out.print(string);		//输出数组元素值
+		}
+	}
+	//1、集合转数组用方法，比如：list.toArray(new String[list.size()])；
+	//2、利用set去除list里面重复的数据
+	
+}
