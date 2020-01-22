@@ -1,0 +1,87 @@
+import java.awt.Button;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.TextArea;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JLabel;			//创建单行文本
+import javax.swing.JOptionPane;
+
+public class ArrayMinValue_1 {
+    public static void main(String[] args) {
+        // 创建窗体对象
+        Frame f = new Frame("获取一维数组最小值");
+        // 设置窗体属性和布局
+        f.setBounds(400, 200, 600, 300);
+        f.setLayout(new FlowLayout());
+//        f.setTitle("请在文本框中");
+
+        // 创建单行文本
+        JLabel lblLabel = new JLabel("title");    //title是指标签的名称
+        lblLabel.setText("请在文本框中输入多个整数，以空格为分隔符。例如：3 5 2 562 125");
+        // 创建文本框
+        final TextField tf = new TextField(30);
+        // 创建按钮
+        Button bu = new Button("计算");
+        // 创建文本域
+        final TextArea ta = new TextArea(10, 40);
+
+        // 把组件添加到窗体
+        f.add(lblLabel);
+        f.add(tf);
+        f.add(bu);
+        f.add(ta);
+
+        // 设置窗体关闭
+        f.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+
+        // 对按钮添加事件
+        bu.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                // TODO 自动生成的方法存根
+                String arrayStr = tf.getText().trim();
+                for (int i = 0; i < arrayStr.length(); i++) { //过滤非法输出
+                    char charAt = arrayStr.charAt(i);
+                    if (!Character.isDigit(charAt) && charAt != ' ') {
+                        JOptionPane.showMessageDialog(null, "输入包含非数字内容");
+                        tf.setText("");
+                        return;
+                    }
+                }
+
+                String[] numStrs = arrayStr.split(" {1,}"); //分割字符串
+                int[] numArray = new int[numStrs.length];    //创建整数数组
+                // 转换输入为整数数组
+                for (int i = 0; i < numArray.length; i++) {
+                    numArray[i] = Integer.valueOf(numStrs[i]);
+                }
+
+                int min = numArray[0];
+                for (int j = 0; j < numArray.length; j++) {
+                    if (min > numArray[j]) {
+                        min = numArray[j];
+                    }
+                }
+//                lblLabel.setText("数组中最小的数是：" + min);
+                ta.append("数组中最小的数是：" + min + "\r\n");
+                tf.setText("");
+                // 获取光标
+                tf.requestFocus();
+            }
+        });
+
+        // 设置窗体显示
+        f.setVisible(true);
+    }
+}
