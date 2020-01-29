@@ -705,3 +705,25 @@ public class FrameDemo extends JFrame {
 		contentPane.add(button);
 	}
 }
+
+import java.awt.Image;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
+
+public class UiUtil {
+
+	private UiUtil() {}
+	
+	//修改窗体图标
+	public static void setFrameImage(JFrame jf) {
+		//获取工具类对象
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		
+		//根据路径获取图片
+		Image i = tk.getImage("src\\cn\\iscast_10\\jjcc.png");
+		//给窗体设置图片
+		jf.setIconImage(i);
+	}
+//UiUtil.setFrameImage(this); 在主类中调用图标设置；
+}
