@@ -726,4 +726,33 @@ public class UiUtil {
 		jf.setIconImage(i);
 	}
 //UiUtil.setFrameImage(this); 在主类中调用图标设置；
+	//设置窗体居中
+	public static void setFrameCenter(JFrame jf) {
+		/*
+		 * 思路：
+		 * A:获取屏幕的宽和高
+		 * B:获取窗体的宽和高
+		 * C:（用屏幕的宽-窗体的宽）/2，（用屏幕的高-窗体的高）/2作为窗体的新坐标
+		*/
+		
+		//获取工具对象
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		
+		//获取屏幕的宽和高
+		Dimension d = tk.getScreenSize();
+		double screenWidth = d.getWidth();
+		double screenHeigth = d.getHeight();
+		
+		//获取窗体的宽和高
+		int frameWidth = jf.getWidth();
+		int frameHeigth = jf.getHeight();
+		
+		//获取新的窗体宽和高
+		int width = (int)(screenWidth-frameWidth)/2;
+		int heigth = (int)(screenHeigth-frameHeigth)/2;
+		
+		//设置窗体坐标
+		jf.setLocation(width, heigth);
+		//主类中调用UiUtil.setFrameCenter(this);
+	}
 }
