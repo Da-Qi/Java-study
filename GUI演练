@@ -771,3 +771,21 @@ public abstract class MyLookAndFeel {
 	//UIManager.setLookAndFeel(MyLookAndFeel.JTATTOO_ALUMINUM);  主类中调用
 }
 
+//数据校验，必须是数字字符串
+	String regex = "\\d+";
+				 
+	//检验第一个数
+	if(!firstNumberString.matches(regex)) {
+		JOptionPane.showMessageDialog(rootPane, "第一个操作数不满足要求");;
+		firstNumber.setText("");
+		firstNumber.requestFocus();
+		return;
+	}
+	//检验第二个数
+	if(!secondNumberString.matches(regex)) {
+		JOptionPane.showMessageDialog(rootPane, "第二个操作数不满足要求");;
+		secondNumber.setText("");
+		secondNumber.requestFocus();
+		return;
+	}
+				
