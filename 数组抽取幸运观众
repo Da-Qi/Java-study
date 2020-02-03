@@ -1,0 +1,129 @@
+package 随机抽取幸运观众;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+
+public class Demo extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField ntf_in;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Demo frame = new Demo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Demo() {
+		setTitle("\u968F\u673A\u62BD\u53D6\u5E78\u8FD0\u89C2\u4F17");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 594, 376);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JTextArea ntf_out = new JTextArea();
+		ntf_out.setBounds(44, 97, 144, 186);
+		contentPane.add(ntf_out);
+		
+		JLabel label = new JLabel("\u8F93\u5165\u5728\u573A\u89C2\u4F17\u59D3\u540D\u6309\u56DE\u8F66");
+		label.setBounds(44, 26, 144, 15);
+		contentPane.add(label);
+		
+		ntf_in = new JTextField();
+		ntf_in.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getKeyChar()!='\n') {
+					return;
+				}
+				else {
+					String name = ntf_in.getText();
+					if(name.isEmpty()) {
+						return;
+					}
+					else {
+						ntf_out.append(name+"\n");
+						ntf_in.setText("");
+						ntf_in.requestFocus();
+					}
+				}
+			}
+		});
+		ntf_in.setBounds(44, 51, 144, 21);
+		contentPane.add(ntf_in);
+		ntf_in.setColumns(10);
+		
+		/*JTextArea ntf_out = new JTextArea();
+		ntf_out.setBounds(44, 97, 144, 186);
+		contentPane.add(ntf_out);*/
+		
+		JLabel label_1 = new JLabel("\u9009\u53D6\u89C2\u4F17\u4EBA\u5458\uFF1A");
+		label_1.setBounds(234, 26, 106, 15);
+		contentPane.add(label_1);
+		
+		JTextArea luckytf = new JTextArea();
+		luckytf.setBounds(234, 50, 179, 233);
+		contentPane.add(luckytf);
+		
+		JButton button1 = new JButton("\u62BD\u53D6");
+		button1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String perstring = ntf_out.getText();
+				String[] personnelArry = perstring.split("\n{1,}");
+				int index = (int)(Math.random()*personnelArry.length);
+				String formatArg = "本次中奖人员为：\n\t%1$s\n\n恭喜%1$s成为本次观众抽奖的大奖得主。"
+						+"\n\n我们将为%1$s颁发：\n\t质量low的二踢脚3盒";
+				String info = String.format(formatArg,personnelArry[index]);
+				luckytf.setText(info);
+				luckytf.setLineWrap(true);
+			}
+		});
+		button1.setBounds(457, 189, 93, 23);
+		contentPane.add(button1);
+		
+		JButton button2 = new JButton("\u6E05\u7A7A");
+		button2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				ntf_out.setText("");
+				ntf_in.requestFocus();
+			}
+		});
+		
+		button2.setBounds(457, 252, 93, 23);
+		contentPane.add(button2);
+	}
+}
