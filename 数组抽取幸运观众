@@ -100,12 +100,25 @@ public class Demo extends JFrame {
 		JButton button1 = new JButton("\u62BD\u53D6");
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String perstring = ntf_out.getText();
+				/*String perstring = ntf_out.getText();
 				String[] personnelArry = perstring.split("\n{1,}");
 				int index = (int)(Math.random()*personnelArry.length);
 				String formatArg = "本次中奖人员为：\n\t%1$s\n\n恭喜%1$s成为本次观众抽奖的大奖得主。"
 						+"\n\n我们将为%1$s颁发：\n\t质量low的二踢脚3盒";
 				String info = String.format(formatArg,personnelArry[index]);
+				luckytf.setText(info);
+				luckytf.setLineWrap(true);*/
+				
+				String perstring = ntf_out.getText();
+				String[] personnelArry = perstring.split("\n{1,}");
+				int index = (int)(Math.random()*personnelArry.length);
+				
+				String formatArg = "本次中奖人员为：\n\t%1$s\n"
+						+ "恭喜%1$s成为本次观众抽奖的大奖得主。"
+						+"\n\n我们将为%1$s颁发：\n%4$s%2$s"	//%2$s 表示质量
+						+ "%3$s";	//表示物品
+						//+ "%4$s";		//表示数量
+				String info = String.format(formatArg,personnelArry[index],re.quality(),re.goods(),re.number());
 				luckytf.setText(info);
 				luckytf.setLineWrap(true);
 			}
@@ -125,5 +138,67 @@ public class Demo extends JFrame {
 		
 		button2.setBounds(457, 252, 93, 23);
 		contentPane.add(button2);
+	}
+}
+
+
+package 随机抽取幸运观众;
+
+public class reward {
+	//品质
+	public String quality() {
+		String[] list_quality = {
+				"平平无奇的",
+				"虚晃一枪(不给你的意思)",
+				"金色传说的",
+				"容易破的",
+				"绿的",
+				"美汁汁儿的",
+				"他自己最爱的"
+		};
+		int index = (int) (Math.random()*list_quality.length);
+		return list_quality[index];
+
+	}
+	//物件
+	public String goods() {
+		
+		String[] list_goods = {
+				"奥利给",
+				"米hotel",
+				"黄grou",
+				"撤硕儿",
+				"肛本",
+				"开塞露",
+				"过期酸奶",
+				"榴莲加腐乳",
+				"青椒炒青椒",
+				"Air炮s",
+				"蓝纹奶酪",
+				"鲱鱼罐头",
+				"老八蜜汁小汉堡"
+			
+				
+		};
+		int index = (int) (Math.random()*list_goods.length);
+		return list_goods[index];
+	}
+	
+	//数量
+	public String number() {
+		// TODO Auto-generated method stub
+		String[] list_number = {
+				"三十箱",
+				"一锅",
+				"一撤硕儿",
+				"一脸盆",
+				"一盘子",
+				"一指甲",
+				"一摇摇车",
+				"五十杯"
+
+		};
+		int index = (int) (Math.random()*list_number.length);
+		return list_number[index];
 	}
 }
