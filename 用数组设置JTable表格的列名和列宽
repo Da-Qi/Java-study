@@ -1,0 +1,77 @@
+package 用数组设置表格的列名和列宽;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+import javax.swing.JTable;
+import java.awt.FlowLayout;
+import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.AncestorEvent;
+
+public class Demo extends JFrame {
+
+	private JPanel contentPane;
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Demo frame = new Demo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Demo() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 633, 471);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(87, 94, 452, 206);
+		contentPane.add(scrollPane);
+		scrollPane.setViewportView(getTable());
+		
+	}
+	
+	public JTable getTable() {
+		if(table == null) {
+			table = new JTable();
+			String[] columns = {"星期一","星期二","星期三","星期四","星期五","星期六","星期日"};
+			//定义列宽数组
+			int[] columnWidth = {10,20,30,40,50,60,70};
+			//创建表格数据类型
+			DefaultTableModel model = new DefaultTableModel(columns,15);
+			table.setModel(model);	//设置表格数据模型
+			TableColumnModel columnModel = table.getColumnModel();	//获取列模型
+			int count = columnModel.getColumnCount();	//获取列数量
+			for(int i = 0;i<count;i++) {
+				//遍历列
+				TableColumn column = columnModel.getColumn(i);	//获取列对象
+				column.setPreferredWidth(columnWidth[i]);	//以数组元素设置列的宽度
+			}
+		}
+		return table;
+	}
+}
