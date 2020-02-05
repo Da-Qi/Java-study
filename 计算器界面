@@ -1,0 +1,29 @@
+public calculate() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+		setTitle("计算器界面");
+		JTextField textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.TRAILING);
+		textField.setPreferredSize(new Dimension(12,50));
+		contentPane.add(textField,BorderLayout.NORTH);
+		textField.setColumns(10);
+		
+		GridLayout gridLayout = new GridLayout(4,4);
+		gridLayout.setHgap(5);
+		gridLayout.setVgap(5);
+		JPanel panel = new JPanel();
+		panel.setLayout(gridLayout);
+		
+		contentPane.add(panel,BorderLayout.CENTER);
+		String[] names = {"1","2","3","+","4","5","6","-","7","8","9","x",".","0","=","÷"};
+		JButton[] buttons = new JButton[16];
+		for(int row = 0; row<names.length;row++) {
+			buttons[row] = new JButton(names[row]);
+			panel.add(buttons[row]);
+		}
+		
+	}
