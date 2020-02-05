@@ -1,0 +1,70 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.LayoutManager;
+import java.awt.TextField;
+import java.awt.GridLayout;
+
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+
+public class Demo extends JFrame {
+
+	private JPanel contentPane;
+	private JPanel panel;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Demo frame = new Demo();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 * @return 
+	 */
+	public  Demo() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//设置窗体关闭按钮
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(20,10));
+		setContentPane(contentPane);
+		
+		setTitle("复选框控件数组");
+		
+		contentPane.add(getPanel());
+		
+	}
+	private JPanel getPanel() {
+		if(panel == null) {
+			panel = new JPanel();					//	创建面板对象
+			panel.setLayout(new GridLayout(5,2));
+			//panel.setLayout(new GridLayout());	//设置网格布局管理器
+			String[] labels = {
+					"足球","篮球","魔术","乒乓球","魔兽世界","CS","羽毛球","游泳","旅游","爬山"
+			};
+			JCheckBox[] boxs = new JCheckBox[labels.length];	//创建控件数组
+			for(int i = 0;i<boxs.length;i++) {					//遍历控件数组
+				boxs[i] = new JCheckBox(labels[i]);				//初始化数组中的复选框组件
+				panel.add(boxs[i]);
+			}
+		}
+		return panel;
+	}
+
+}
