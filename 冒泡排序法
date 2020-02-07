@@ -1,0 +1,32 @@
+//生成随机数
+JButton button = new JButton("\u751F\u6210\u968F\u673A\u6570");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textArea.setText("");
+				for(int i=0;i<array.length;i++) {
+					array[i] = new Random().nextInt(50);
+					textArea.append(array[i]+" ");
+				}
+			}
+		});
+//冒泡排序详细过程输出
+button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				for(int i=1;i<array.length;i++) {
+					//比较相邻的数，较大的数往后冒
+					for(int j=0;j<array.length-i;j++) {
+						if(array[j] > array[j+1]) {
+							int temp = array[j];
+							array[j] = array[j+1];
+							array[j+1] = temp;
+						}
+						textArea_1.append(array[j]+" ");
+					}
+					textArea_1.append("【");
+					for(int j = array.length-i;j<array.length;j++) {
+						textArea_1.append(array[j]+" ");
+					}
+					textArea_1.append("】\n");
+				}
+			}
+		});
