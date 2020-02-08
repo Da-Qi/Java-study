@@ -1,0 +1,33 @@
+textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				char key = e.getKeyChar();
+				String mask = "0123456789" + (char)8; //判断输入的是否为数字以及退格
+				if(mask.indexOf(key) == -1) {     //不是则取消该输入
+					e.consume();
+				}
+			}
+		});
+    
+button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String  text = textField.getText();
+				String[] arrayStr = text.split(" {1,}");
+				int[] array = new int[arrayStr.length];
+				
+				textArea.setText("数组原有内容：\n");
+				for(String e :arrayStr) {
+					textArea.append(e + "  ");
+				}
+				for(int i = 0;i<array.length;i++) {       //数组初始化
+					array[i] = Integer.parseInt(arrayStr[i]);   
+				}
+				textArea.append("\n");
+				Arrays.sort(array);			//sort()对整形数组进行排序
+				textArea.append("数组排序后的结果：\n");
+				for(int value : array) {
+					textArea.append(value+"  ");
+				}
+				
+			}
+		});
