@@ -74,13 +74,50 @@ public class Demo extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				textArea2.setText("");
 				quickSort(array,0,array.length -1);
+				
+				
+				private void quickSort(int[] sortarray, int lowIndex, int highIndex) {
+				// TODO Auto-generated method stub
+				int lo = lowIndex;
+				int hi = highIndex;
+				int mid;
+				if(highIndex > lowIndex) {
+					mid = sortarray[(lowIndex+highIndex)/2];
+					while(lo <= hi) {
+						while((lo<highIndex)&&(sortarray[lo]<mid))
+							++lo;
+						while((hi>lowIndex)&&(sortarray[hi]>mid))
+							--hi;
+						if(lo <= hi) {
+							swap(sortarray,lo,hi);
+							++lo;
+							--hi;
+						}
+						}
+					if(lowIndex < hi)
+						quickSort(sortarray,lowIndex,hi);
+					if(lo < highIndex)
+						quickSort(sortarray,lo,highIndex);
+							}
+				}
+				
+				private void swap(int swapArray[], int i, int j) {
+					int temp = swapArray[i];
+					swapArray[i] = swapArray[j];
+					swapArray[j] = temp;
+					for(int k = 0 ; k < array.length; k++) {
+						textArea2.append(array[k]+"  ");
+					}
+					textArea2.append("\n");
+				}
+				
 			}
 		});
 		button_1.setBounds(165, 224, 93, 23);
 		contentPane.add(button_1);
 	}
 
-	protected void quickSort(int sortarray[], int lowIndex, int highIndex) {
+	/*protected void quickSort(int sortarray[], int lowIndex, int highIndex) {
 		// TODO Auto-generated method stub
 		int lo = lowIndex;
 		int hi = highIndex;
@@ -104,9 +141,9 @@ public class Demo extends JFrame {
 				quickSort(sortarray,lo,highIndex);
 		}
 		
-	}
+	}*/
 
-	private void swap(int[] sortarray, int lo, int hi) {
+	/*private void swap(int[] sortarray, int lo, int hi) {
 		// TODO Auto-generated method stub
 		int temp = sortarray[lo];
 		sortarray[lo] = sortarray[hi];
@@ -115,5 +152,5 @@ public class Demo extends JFrame {
 			textArea2.append(array[k]+" ");
 		}
 		textArea2.append("\n");
-	}
+	}*/
 }
