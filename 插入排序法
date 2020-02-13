@@ -1,0 +1,33 @@
+//生成随机数组
+button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Random random = new Random();
+				textArea.setText("");
+				for(int i = 0;i < array.length;i++) {
+					array[i] = random.nextInt(50);
+					textArea.append(array[i]+" ");
+				}
+			}
+		});
+
+//快速排序
+button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int temp;
+				int j;
+				textArea_1.setText("");
+				for(int i = 1;i<array.length;i++) {
+					temp = array[i];
+					for(j = i-1;j>=0&&array[j]>temp;j--) {
+						array[j+1] = array[j]; 		//大的数就往后走
+					}
+					array[j+1] = temp;		//由于for循环退出时又执行了一次j--，故要回到空出位置，需要+1；
+					
+					for(int k = 0;k<array.length;k++) {
+						textArea_1.append(array[k]+" ");
+					}
+					textArea_1.append("\n");
+				}
+				
+			}
+		});
