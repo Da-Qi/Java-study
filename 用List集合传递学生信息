@@ -1,0 +1,30 @@
+JScrollPane scrollPane = new JScrollPane(getTable());
+		contentPane.add(scrollPane,BorderLayout.CENTER);
+    
+private JTable getTable(){
+		JTable table = new JTable();
+		String[] columns = {"姓名","性别","出生日期"};
+		DefaultTableModel model = new DefaultTableModel(columns,0);
+		table.setModel(model);
+		ArrayList<String> students = getStudents(); //调用方法传递list集合对象
+		//遍历学生集合对象
+		for(String info:students) {
+			String[] args = info.split(","); //把学生信息拆分为数组
+			model.addRow(args);	//把信息添加到表格的行
+		}
+		return table;
+	}
+
+
+	private ArrayList<String> getStudents() {
+		// 创建list集合对象
+		ArrayList<String> list = new ArrayList<String>();
+		list.add("黎明,男,1981-1-1");
+		list.add("小陈,男,1981-1-1");
+		list.add("张学友,男,1981-1-1");
+		list.add("郭富城,男,1981-1-1");
+		list.add("刘德华,男,1981-1-1");
+		list.add("童安格,男,1981-1-1");
+		list.add("林子祥,男,1981-1-1");
+		return list;
+	}
