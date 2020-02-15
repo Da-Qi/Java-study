@@ -1,0 +1,180 @@
+package Map映射集合实现省市级联选择框;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerListModel;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.Map;
+import java.util.Set;
+import java.awt.event.ActionEvent;
+
+public class test extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					test frame = new test();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public test() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 832, 682);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel label = new JLabel("\u59D3\u540D :");
+		label.setHorizontalAlignment(SwingConstants.LEFT);
+		label.setBounds(72, 52, 72, 18);
+		contentPane.add(label);
+		
+		JLabel label_1 = new JLabel("\u6027\u522B :");
+		label_1.setBounds(72, 114, 72, 18);
+		contentPane.add(label_1);
+		
+		JLabel label_2 = new JLabel("\u5C45\u4F4F\u5730");
+		label_2.setBounds(72, 175, 72, 18);
+		contentPane.add(label_2);
+		
+		JLabel label_3 = new JLabel("\u8BE6\u7EC6\u5730\u5740 :");
+		label_3.setBounds(72, 314, 86, 18);
+		contentPane.add(label_3);
+		
+		JLabel lblEmail = new JLabel("E-mail :");
+		lblEmail.setBounds(72, 383, 72, 18);
+		contentPane.add(lblEmail);
+		
+		textField = new JTextField();
+		textField.setBounds(158, 49, 288, 24);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(158, 311, 597, 24);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(158, 377, 597, 24);
+		contentPane.add(textField_2);
+		
+		JLabel label_4 = new JLabel("\u7701/\u76F4\u8F96\u5E02");
+		label_4.setBounds(286, 209, 72, 18);
+		contentPane.add(label_4);
+		
+		JLabel label_5 = new JLabel("\u5E02/\u53BF");
+		label_5.setBounds(602, 209, 72, 18);
+		contentPane.add(label_5);
+		
+		JComboBox citycomboBox = new JComboBox();
+		citycomboBox.setBounds(410, 206, 178, 24);
+		contentPane.add(citycomboBox);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.addItem("北京");
+		comboBox.addItem("上海");
+		comboBox.addItem("天津");
+		comboBox.addItem("重庆");
+		comboBox.addItem("湖北");
+		comboBox.addItem("黑龙江");
+		comboBox.addItem("吉林");
+		
+		comboBox.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent arg0) {
+				// TODO Auto-generated method stub
+				String selectProvince = (String)comboBox.getSelectedItem();
+				citycomboBox.removeAllItems();
+				String[] arrCity = getCity(selectProvince);
+				citycomboBox.setModel(new DefaultComboBoxModel(arrCity));
+			}
+			
+			private String[] getCity(String selectProvince) {
+				// TODO Auto-generated method stub
+				Map<String,String[]> map = CityMap.model;
+				String[] arrCity = map.get(selectProvince);
+				return arrCity;
+			}
+			
+		});
+		
+		
+		comboBox.setBounds(82, 209, 178, 24);
+		contentPane.add(comboBox);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"\u7537", "\u5973"}));
+		comboBox_1.setBounds(158, 111, 102, 24);
+		contentPane.add(comboBox_1);
+		
+		JButton button = new JButton("\u4FDD\u5B58");
+		button.setBounds(185, 478, 113, 27);
+		contentPane.add(button);
+		
+		JButton button_1 = new JButton("\u91CD\u7F6E");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		button_1.setBounds(410, 478, 113, 27);
+		contentPane.add(button_1);
+	}
+	public Object[] getProvince() {
+		Map<String,String[]> map = CityMap.model;	//获取省份信息保存到map
+		Set<String> set = map.keySet();				//获取Map集合的键，并以Set集合返回
+		Object[] province = set.toArray();
+		return province;
+	}
+}
+
+package Map映射集合实现省市级联选择框;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class CityMap {
+	public static Map<String,String[]> model = new LinkedHashMap();
+	static {
+		model.put("北京", new String[] {"北京"});
+		model.put("上海", new String[] {"上海"});
+		model.put("天津", new String[] {"天津"});
+		model.put("重庆", new String[] {"重庆"});
+		
+		model.put("湖北", new String[] {"武汉","仙桃","天门","潜江","襄阳","黄冈","神龙架"});
+		model.put("黑龙江", new String[] {"哈尔滨","齐齐哈尔","牡丹江","大兴安岭"});
+		model.put("吉林", new String[] {"长春","延边","白城"});
+	}
+}
