@@ -1,0 +1,22 @@
+import java.util.Random;
+import java.util.TreeSet;
+
+public class test {
+	public static void main(String[] args) {
+		TreeSet<Integer> set = new TreeSet<Integer>();	//创建TreeSet集合对象
+		Random random = new Random();		//创建随机数对象
+		int count = 0 ;
+		while(count < 10) {
+			boolean succeed = set.add(random.nextInt(100));		//set对象中不允许有重复对象，故可能添加不成功
+			if(succeed)
+				count++;
+		}
+		int size = set.size();	//用数组来接受集合
+		Integer[] array = new Integer[size];	//创建同等数组
+		set.toArray(array);		//获取集合中的数组
+		System.out.println("生成不重复随机数组内容如下：");
+		for(int  a: array) {				//遍历输出数组
+			System.out.print(a+"   ");
+		}
+	}
+}
