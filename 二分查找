@@ -1,0 +1,33 @@
+package 二分查找;
+
+public class Demo {
+	public static void main(String[] args) {
+		// 定义一个数组
+		int[] arr = { 11, 22, 33, 44, 55, 66, 77 };
+
+		System.out.println("该字符索引在第"+getIndex(arr,55)+"位");
+		System.out.println("该字符索引在第"+getIndex(arr,333)+"位");
+
+	}
+
+	public static int getIndex(int[] arr, int value) {
+		// TODO Auto-generated method stub
+		int max = arr.length - 1;
+		int min = 0;
+
+		int mid = (max + min) / 2;
+		while (arr[mid] != value) {
+			if (arr[mid] > value) {
+				max = mid - 1;
+			} else if (arr[mid] < value) {
+				min = mid + 1;
+			}
+			
+			//判断
+			if(min>max)
+				return -1;
+			mid = (max + min) / 2;
+		}
+		return mid;
+	}
+}
